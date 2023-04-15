@@ -12,10 +12,12 @@ class Rectangle:
         self.height = height
 
     @property
+    """property for width"""
     def width(self):
         return self.__width
 
     @width.setter
+    """checks if the value passed is an Interger or not negative"""
     def width(self, value):
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
@@ -24,10 +26,12 @@ class Rectangle:
         self.__width = value
 
     @property
+    """property for height"""
     def height(self):
         return self.__height
 
     @height.setter
+    """checks if the value passed is an Interger or not negative"""
     def height(self, value):
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
