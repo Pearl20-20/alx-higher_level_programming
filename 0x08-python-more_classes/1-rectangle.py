@@ -1,23 +1,22 @@
 #!/usr/bin/python3
+"""Declaring an empty class"""
 
 
 class Rectangle:
-    """
-    Set the propetits of the rectangle
-    width - The vertical distance of the rectangle
-    height -  Horizontal distance of the rectangle
-    """
+    """creating a Rectangle  Class
+    with Width and Heigth as its properties"""
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
 
     @property
-    """property for width"""
+    """getter property for width"""
     def width(self):
         return self.__width
 
     @width.setter
-    """checks if the value passed is an Interger or not negative"""
+    """setter property for width that
+    checks is Value is an integer or negative"""
     def width(self, value):
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
@@ -26,12 +25,13 @@ class Rectangle:
         self.__width = value
 
     @property
-    """property for height"""
+    """getter property for height"""
     def height(self):
         return self.__height
 
     @height.setter
-    """checks if the value passed is an Interger or not negative"""
+    """setter property for heigth  that
+    checks is Value is an integer or negative"""
     def height(self, value):
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
