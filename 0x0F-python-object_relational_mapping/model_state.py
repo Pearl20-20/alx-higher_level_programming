@@ -1,23 +1,27 @@
 #!/usr/bin/python3
-"""takes in the name of a state as an argument and
-lists all cities of that state,
-using the database hbtn_0e_4_usa"""
+"""
+Defines a state model that contain the class definition
+ of a State and an instance Base = declarative_base()
+"""
 
-if __name__ == '__main__':
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
-    import MySQLdb
-    import sys
+Base = declarative_base()
 
-    db = MySQLdb.connect(host='localhost', port=3306,
-                         user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
 
-    cur = db.cursor()
-    cur.execute("SELECT cities.name\
-                FROM cities LEFT JOIN states\
-                ON states.id = cities.state_id\
-                WHERE states.name = %s\
-                ORDER BY cities.id ASC", (sys.argv[4],))
-    rows = cur.fetchall()
-    print(", ".join([row[0] for row in rows]))
-    cur.close()
-    db.close()
+class State(Base):
+    """
+    inherits from Base Tips
+    links to the MySQL table states
+    class attribute id that represents a column
+     of an auto-generated, unique integer, can't
+      be null and is a primary key
+    class attribute name that represents a column
+     of a string with maximum 128 characters and
+      can't be null
+
+    """
+    __tablename__ = "states"
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    name = Column(String(128), nullable=False)
